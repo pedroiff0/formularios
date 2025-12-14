@@ -1,31 +1,163 @@
-\documentclass[a4paper,landscape]{article}
-\usepackage{latexconfig/forms}
+% blue = equações normais dos capitulos
+% red = equações importantes
+% purple = equações semelhantes
+% green = equações anteriores de capitulos
+% teal = equações básicas
 
-\begin{document}
+\begin{multicols}{4}
 
-\begin{multicols*}{3}
+{\small\noindent Capítulo 28: Campo Magnético}
 
-\formulabox[blue]{$F = m a$}{F = Força (N) \\ m = Massa (kg) \\ a = Aceleração (m/s$^2$)}
+\formulabox[blue]{Força Magnética sobre uma Carga}{ $\vec{F}_B =  q \vec{v} \times \vec{B} \quad $ (\si{\newton})}{
+$\vec{F}_B$ = Força magnética (\si{\newton}) \\
+$q$ = Carga (\si{\coulomb}) \\
+$\vec{v}$ = Velocidade da carga (\si{\meter\per\second}) \\
+$\vec{B}$ = Campo magnético (\si{\tesla})
+}
 
-\formulabox[red]{$E = m c^2$}{E = Energia (J) \\ m = Massa (kg) \\ c = Velocidade da luz ($3{,}0 \times 10^8$ m/s)}
+\formulabox[red]{Densidade de Portadores (Efeito Hall)}{$n = \frac{B i}{V l e} \quad $ (\si{\per\meter\cubed})}{
+$n$ = Densidade de portadores (\si{\per\meter\cubed}) \\
+$B$ = Campo magnético (\si{\tesla}) \\
+$i$ = Corrente (\si{\ampere}) \\
+$V$ = Tensão (\si{\volt}) \\
+$l$ = Largura (\si{\meter}) \\
+$e$ = Carga elementar (\si{\coulomb})
+}
 
-\formulabox[black]{$P = F / A$}{P = Pressão (Pa) \\ F = Força (N) \\ A = Área (m$^2$)}
+\formulabox[blue]{Velocidade em Movimento Circular}{$v = \frac{q r B}{m} \quad $ (\si{\meter\per\second})}{
+$v$ = Velocidade (\si{\meter\per\second}) \\
+$r$ = Raio da trajetória (\si{\meter}) \\
+$B$ = Campo magnético (\si{\tesla}) \\
+$q$ = Carga (\si{\coulomb}) \\
+$m$ = Massa (\si{\kilogram})
+}
 
-\formulabox[teal]{$V = \pi r^2 h$}{V = Volume do cilindro (m$^3$) \\ $\pi$ = 3,1415 \\ r = raio (m) \\ h = altura (m)}
+\formulabox[blue]{Força Magnética em Fio com Corrente}{$\vec{F}_B =  i\vec{L} \times \vec{B} \quad $ (\si{\newton})}{
+$\vec{F}_B$ = Força magnética (\si{\newton}) \\
+$i$ = Corrente (\si{\ampere}) \\
+$\vec{L}$ = Comprimento do fio (\si{\meter}) \\
+$\vec{B}$ = Campo magnético (\si{\tesla})
+}
 
-\formulabox[orange]{$Q = m c \Delta T$}{Q = Calor (J) \\ m = Massa (kg) \\ c = Calor específico (J/kg$\cdot$K) \\ $\Delta T$ = Variação de temperatura (K)}
+\formulabox[teal]{Torque em Espira}{$\vec{\tau} = \vec{\mu} \times \vec{B} \quad $ (\si{\newton\meter})}{
+$\vec{\tau}$ = Torque (\si{\newton\meter}) \\
+$\vec{\mu}$ = Momento magnético (\si{\ampere\meter\squared}) \\
+$\vec{B}$ = Campo magnético (\si{\tesla})
+}
 
-\formulabox[purple]{$F = k \frac{q_1 q_2}{r^2}$}{F = Força elétrica (N) \\ k = 9,0 $\times$ 10$^9$ N m$^2$/C$^2$ \\ $q_1$, $q_2$ = Cargas (C) \\ r = Distância (m)}
+\columnbreak
 
-\begin{tabular}{@{}ll@{}}
-\constbox[blue]{$\pi$}{3,1415}
+\formulabox[teal]{Energia Potencial Magnética}{$U(\theta) =  -\vec{\mu} \cdot \vec{B} \quad $ (\si{\joule})}{
+$U$ = Energia potencial (\si{\joule}) \\
+$\vec{\mu}$ = Momento magnético (\si{\ampere\meter\squared}) \\
+$\vec{B}$ = Campo magnético (\si{\tesla})
+}
+
+\bigskip
+{\small\noindent Capítulo 29: Campo Magnético devido a Correntes}
+
+% \formulabox[blue]{Campo B (Biot Savaro)}{$B = \frac{\mu_0 i }{2\pi r}  \quad $ (\si{\tesla})}{
+% $B$ = Campo magnético (\si{\tesla}) \\
+% $i$ = Corrente (\si{\ampere}) \\
+% %$\mu_0$ = Permeabilidade do vácuo ($4\pi \times 10^{-7}$~\si{\henry\per\meter}) \\
+% $r$ = Distância (\si{\meter})
+% }
+
+\formulabox[blue]{Campo B de um Condutor com Corrente}{$d\vec{B} = \frac{\mu_0}{4\pi} \frac{i d\vec{s}\times\hat{r}}{r^2} \quad $ (\si{\tesla})}{
+$d\vec{B}$ = Elemento de campo magnético (\si{\tesla}) \\
+$i$ = Corrente (\si{\ampere}) \\
+$d\vec{s}$ = Elemento de comprimento (\si{\meter}) \\
+$\hat{r}$ = Vetor unitário posição \\
+$r$ = Distância (\si{\meter})
+}
+
+\formulabox[blue]{Campo B (Biot-Savart)}{$B = \frac{\mu_0 i}{2 \pi R} \quad $ (\si{\tesla})}{
+$B$ = Campo magnético (\si{\tesla}) \\
+$i$ = Corrente (\si{\ampere}) \\
+$R$ = Distância (\si{\meter})
+}
+
+\formulabox[teal]{Campo B de um Arco de Circunferência}{$B = \frac{\mu_0 i \theta}{4\pi R} \quad $ (\si{\tesla})}{
+$B$ = Campo magnético (\si{\tesla}) \\
+$i$ = Corrente (\si{\ampere}) \\
+$\theta$ = Ângulo (\si{\radian}) \\
+$R$ = Raio (\si{\meter})
+}
+
+{
+\setlength{\columnsep}{0.3cm}
+\begin{multicols}{4}
+\subformulabox[Fuchsia]{1/4}{$\frac{\mu_0 i}{8R}$}
+\subformulabox[Fuchsia]{1/2}{$\frac{\mu_0 i}{4R}$}
+\subformulabox[Fuchsia]{3/4}{$\frac{3\mu_0 i}{8R}$}
+\subformulabox[Fuchsia]{1}{$\frac{\mu_0 i}{2R}$}
+\end{multicols}
+}
+
+\columnbreak
+
+\formulabox[blue]{Força Magnética entre Condutores Paralelos}{$\frac{F}{L} = \frac{\mu_0 i i'}{2 \pi r} \quad $ (\si{\newton\per\meter})}{
+$F$ = Força (\si{\newton}) \\
+$L$ = Comprimento do condutor (\si{\meter}) \\
+$i$ = Corrente (\si{\ampere}) \\
+$i'$ = Corrente no segundo condutor (\si{\ampere}) \\
+$r$ = Distância (\si{\meter})
+}
+
+% \formulabox[teal]{Campo Magnético de uma Espira Circular}{$B = \frac{\mu_0 i r^2}{2(x^2 + r^2)^{3/2}} \quad $ (\si{\tesla})}{
+% $B$ = Campo magnético no eixo (\si{\tesla}) \\
+% $i$ = Corrente (\si{\ampere}) \\
+% $r$ = Raio da espira (\si{\meter}) \\
+% $x$ = Distância ao centro (\si{\meter})
+% }
+
+\formulabox[teal]{Lei de Ampère}{$\oint \vec{B} \cdot d\vec{s} = \mu_0 i_{\text{env}} \quad $ (\si{\tesla\meter})}{
+$\vec{B}$ = Campo magnético (\si{\tesla}) \\
+$d\vec{s}$ = Elemento de comprimento (\si{\meter}) \\
+$i_{\text{env}}$ = Corrente envolvida (\si{\ampere})
+}
+
+\formulabox[teal]{Campo B dentro do Fio}{$B = \frac{\mu_0 i r}{2\pi R^2} \quad $ (\si{\tesla})}{
+$B$ = Campo magnético (\si{\tesla}) \\
+$i$ = Corrente (\si{\ampere}) \\
+$r$ = Raio interno (\si{\meter})
+$R$ = Distância ao centro (\si{\meter})
+}
+
+\formulabox[teal]{Campo B de um Solenóide}{$B = \mu_0 i \frac{N}{L} \quad $ (\si{\tesla})}{
+$B$ = Campo magnético (\si{\tesla}) \\
+$n$ = Densidade de espiras (\si{\per\meter}) \\
+$i$ = Corrente (\si{\ampere})
+}
+
+\formulabox[teal]{Campo B de um Toróide}{$B = \frac{\mu_0 N i}{2 \pi r} \quad $ (\si{\tesla})}{
+$B$ = Campo magnético (\si{\tesla}) \\
+$N$ = Número de espiras \\
+$i$ = Corrente (\si{\ampere}) \\
+$r$ = Raio médio (\si{\meter})
+}
+
+\formulabox[teal]{Campo B de Dipolo Magnético}{$B(z) = \frac{\mu_0}{2 \pi} \frac{N i A}{z^3} \quad $ (\si{\tesla})}{
+$B(z)$ = Campo magnético (\si{\tesla}) \\
+$\vec{\mu}$ = Momento magnético (\si{\ampere\meter\squared}) \\
+$z$ = Distância ao dipolo (\si{\meter})
+$N$ = Número de espiras \\
+$i$ = Corrente (\si{\ampere}) \\
+$A$ = Área da espira (\si{\meter\squared})    
+}
+
+\bigskip
+
+{\small\noindent\textbf{Constantes úteis:}}
+\begin{flushleft}
+\constbox[red]{$\pi$}{3,1415}
 \constbox[red]{$e$}{2,718}
-\constbox{$g$}{\SI{9.8}{\meter\per\square\second}}
-\constbox[teal]{$c$}{\SI{3.0e8}{\meter\per\second}}
-\constbox[orange]{$\epsilon_0$}{\SI{8.85e-12}{\coulomb\squared\per\newton\per\square\meter}}
-\constbox[khaki]{$k_B$}{\SI{1.38e-23}{\joule\per\kelvin}}
-\end{tabular}
+\constbox[red]{$e$}{$1{,}602 \times 10^{-19}$~\si{\coulomb}}
+\constbox[red]{$m_e$}{$9{,}109 \times 10^{-31}$~\si{\kilogram}}
+\constbox[red]{$g$}{\SI{9.81}{\meter\per\square\second}}
+\constbox[red]{$c$}{\SI{3.0e8}{\meter\per\second}}
+\constbox[red]{$\epsilon_0$}{\SI{8.85e-12}{\coulomb\squared\per\newton\per\square\meter}}
+\constbox[red]{$\mu_0$}{$4\pi \times 10^{-7}$~\si{\henry\per\meter}}
+\end{flushleft}
 
-\end{multicols*}
-
-\end{document}
+\end{multicols}
