@@ -1,0 +1,82 @@
+% Tratamento para underfull hbox/badness
+\tolerance=2000
+\hbadness=2000
+\emergencystretch=1em
+\ProvidesPackage{latexconfig/forms}
+
+% Pacotes essenciais
+% \usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{siunitx}
+\geometry{margin=0.5cm}
+\setlength{\columnsep}{1.2cm}
+\pagestyle{empty}
+
+% Configuração global do siunitx para melhor visualização
+\sisetup{
+  detect-all,
+  output-decimal-marker = {,},
+  group-separator = {.},
+  group-minimum-digits = 4,
+  exponent-product = \cdot,
+  scientific-notation = engineering,
+  output-exponent-marker = \mathrm{e},
+  per-mode = symbol,
+  inter-unit-product = ~,
+  separate-uncertainty = true,
+  tight-spacing = true,
+  mode = text,
+  detect-weight = true,
+  detect-family = true,
+  detect-shape = true,
+  detect-mode = true,
+}
+
+% Definição de cores RGB
+\definecolor{vermelhoRGB}{RGB}{200,30,30}
+\definecolor{verdeRGB}{RGB}{30,160,60}
+\definecolor{khaki}{RGB}{240,230,140}
+
+% Comando para inserir fórmulas com explicações
+% Uso: \formulabox[cor]{fórmula}{explicações}
+% Requer: tcolorbox
+\usepackage[most]{tcolorbox}
+
+% Box customizada para fórmulas
+\newtcolorbox{FormulaBox}[2][]{
+  enhanced,
+  colback=#1!5!white,
+  colframe=#1,
+  boxrule=1pt,
+  arc=6pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt,
+  sharp corners=south,
+  fontupper=\normalsize\bfseries\color{#1},
+  breakable,
+  before skip=6pt, after skip=6pt,
+  width=0.95\columnwidth,
+  halign=center,
+  #2
+}
+
+% Comando para inserir fórmulas com explicações
+% Uso: \formulabox[cor]{fórmula}{explicações}
+\newcommand{\formulabox}[3][blue]{%
+  \vspace{0.5em}%
+  \begin{FormulaBox}[#1]{}
+    #2
+  \end{FormulaBox}%
+  \vspace{0.5em}%
+  {\noindent\raggedright #3\par}%
+}
+
+% Comando para inserir constantes
+% Uso: \constbox[cor]{constante}{valor e unidade}
+\newcommand{\constbox}[3][black]{%
+  {\color{#1}\textbf{#2}} = {#3} \\
+}
