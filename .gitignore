@@ -6,3 +6,4 @@
 *.lof
 *.lot
 *.fls
+.DS_Store
