@@ -1,0 +1,61 @@
+% Cálculo IV - folha de fórmulas (template)
+% Seções: sequências e séries, Taylor/Maclaurin, variáveis complexas,
+% singularidades e séries de Laurent, resíduos e polos, integração complexa,
+% transformada de Laplace, séries de Fourier
+
+\begin{multicols*}{3}
+
+% Sequências e Séries
+\formulabox[BrickRed]{Sequências e Séries}{$\sum_{n=0}^{\infty} a_n$ (convergência)}{
+Critério do termo geral: $a_n \to 0$ necessário. \\
+Séries geométrica: $\sum_{n=0}^{\infty} ar^n = \dfrac{a}{1-r}$ (se $|r|<1$). \\
+Teste da razão (d'Alembert): $L=\lim_{n\to\infty} \left|\dfrac{a_{n+1}}{a_n}\right|$; convergência se $L<1$.
+}
+
+% Taylor e Maclaurin
+\formulabox[RoyalBlue]{Séries de Taylor / Maclaurin}{$f(x)=\sum_{n=0}^{\infty}\dfrac{f^{(n)}(a)}{n!}(x-a)^n$}{
+Resto de Lagrange: $R_n(x)=\dfrac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1}$. \\
+Exemplos: $e^x,\ \sin x,\ \cos x,\ \ln(1+x)$ (expansões padrão).
+}
+
+% Variáveis Complexas
+\formulabox[BrickRed]{Números Complexos}{ $z = x + i y = r e^{i\theta}$}{
+Forma polar: $r=|z|$, $\theta=\arg z$. \\
+Euler: $e^{i\theta}=\cos\theta + i\sin\theta$. \\
+Cauchy–Riemann (condição para analiticidade): $u_x = v_y,\ u_y = -v_x$.
+}
+
+% Singularidades e Série de Laurent
+\formulabox[RoyalBlue]{Singularidades e Laurent}{Série de Laurent: $f(z)=\sum_{n=-\infty}^{\infty} c_n (z-z_0)^n$}{
+Classificação: removível, pólo de ordem m, essencial. \\
+Parte principal = termos com $n<0$; coeficientes obtidos por integrais de contorno.
+}
+
+% Resíduos e Polos
+\formulabox[BrickRed]{Resíduos e Polos}{Resíduo (pólo simples): $\Res_{z=z_0} f(z) = \lim_{z\to z_0} (z-z_0)f(z)$}{
+Pólo de ordem n: $\Res = \dfrac{1}{(n-1)!}\lim_{z\to z_0} \dfrac{d^{n-1}}{dz^{n-1}}\left[(z-z_0)^n f(z)\right]$.
+}
+
+% Integração Complexa
+\formulabox[RoyalBlue]{Integração Complexa}{\(\oint_C f(z)\,dz\)}{
+Teorema integral de Cauchy: $f(a)=\dfrac{1}{2\pi i}\oint_C \dfrac{f(z)}{z-a}\,dz$ (se analítica em interior). \\
+Teorema dos resíduos: $\oint_C f(z)\,dz = 2\pi i \sum \Res(f, z_k)$.
+}
+
+\columnbreak
+
+% Transformada de Laplace
+\formulabox[BrickRed]{Transformada de Laplace}{$\Laplace{f(t)}(s)=\int_0^{\infty} e^{-st}f(t)\,dt$}{
+Propriedades: linearidade, deslocamento em tempo e em s, derivada e convolução. \\
+Pares úteis: $\Laplace{1}=\dfrac{1}{s}$, $\Laplace{e^{at}}=\dfrac{1}{s-a}$, $\Laplace{\sin bt}=\dfrac{b}{s^2+b^2}$.
+}
+
+% Séries de Fourier
+\formulabox[RoyalBlue]{Séries de Fourier}{Para função periódica de período $2L$:}
+{Coeficientes: $a_n=\dfrac{1}{L}\int_{-L}^L f(x)\cos\left(\dfrac{n\pi x}{L}\right)dx$, \\
+$b_n=\dfrac{1}{L}\int_{-L}^L f(x)\sin\left(\dfrac{n\pi x}{L}\right)dx$. \\
+Série: $f(x)=\dfrac{a_0}{2}+\sum_{n=1}^{\infty} \left[a_n\cos\dfrac{n\pi x}{L}+b_n\sin\dfrac{n\pi x}{L}\right]$.
+}
+
+\end{multicols*}
+% Inclua este arquivo em main.tex com: \include{calculoiv/calciv}
