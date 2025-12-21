@@ -10,6 +10,13 @@
 \usepackage{geometry}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{siunitx}
+\usepackage{tikz} % desenho: circulo trigonometrico
+\usepackage{amsmath,amssymb} % matemáticas: operadores, símbolos, ambientes de ecuaciones
+\numberwithin{equation}{section}
+% For single-page orientation switches (deductions, derivations)
+\usepackage{pdflscape} % rotate pages in PDF viewer when needed
+\usepackage{afterpage}  % helper for page breaks
+\usepackage{ifthen}     % simple conditionals for orientation handling
 \geometry{margin=0.5cm}
 \setlength{\columnsep}{0.5cm}
 \pagestyle{empty}
@@ -90,4 +97,72 @@
 % Uso: \constbox[cor]{constante}{valor e unidade}
 \newcommand{\constbox}[3][black]{%
   {\noindent\small\color{#1}\textbf{#2}} = {#3} \\
+}
+
+% Macros úteis para análise complexa e transformadas
+% \Res: operador Res (resíduos)
+% \pv: valor principal (principal value)
+% \Laplace{f}: transformada de Laplace
+% \InvLaplace{F}: transformada inversa de Laplace
+% \Fourier{f}: transformada de Fourier
+\DeclareMathOperator{\Res}{Res}
+\newcommand{\pv}{\operatorname{p.v.}}
+\newcommand{\Laplace}[1]{\mathcal{L}\{#1\}}
+\newcommand{\InvLaplace}[1]{\mathcal{L}^{-1}\{#1\}}
+\newcommand{\Fourier}[1]{\mathcal{F}\{#1\}}
+
+% Caixa específica para folhas de cálculo básico (visual compacto)
+\newtcolorbox{CalcBox}[2][]{
+  enhanced,
+  colback=#1!4!white,
+  colframe=#1,
+  boxrule=0.5pt,
+  arc=3pt,
+  left=6pt,
+  right=6pt,
+  top=4pt,
+  bottom=4pt,
+  sharp corners=south,
+  fontupper=\normalsize\normalfont\color{#1},
+  breakable,
+  before skip=4pt, after skip=4pt,
+  width=\columnwidth,
+  halign=center,
+  nobeforeafter,
+  #2
+}
+
+% Macro de uso similar a \formulabox mas usando CalcBox
+\newcommand{\calcbox}[4][blue]{%
+  \vspace{0.2em}%
+  \ifx&#2&\else{\small\noindent\textbf{#2}\par}\fi %titulo (se fornecido)
+    \begin{CalcBox}[#1]{} % cor
+    \centering
+    #3 % formula(s)
+  \end{CalcBox}%
+    \begin{flushleft}\small #4\end{flushleft}% descricao
+}
+
+% Macro para prefixar linhas com travessão
+\newcommand{\li}{\textemdash\ }
+
+% Ambiente para deduções centralizadas
+\newenvironment{deducao}{\begin{center}}{\end{center}}
+
+% Macro para etapas de dedução em tcolorbox
+\newcommand{\deducaostep}[3][BrickRed]{
+\begin{tcolorbox}[
+  title=\textbf{#2}, 
+  colback=#1!5, 
+  colframe=#1, 
+  coltitle=white, 
+  fonttitle=\normalsize\bfseries,   halign title=center,  sharp corners=south,
+  arc=3pt, 
+  boxrule=0.5pt, 
+  left=3pt, 
+  right=3pt, 
+  top=3pt, 
+  bottom=3pt] 
+  #3 
+\end{tcolorbox}
 }
