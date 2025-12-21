@@ -1,0 +1,139 @@
+% RoyalBlue = equações normais dos capitulos
+% BrickRed = equações importantes
+% Fuchsia = equações semelhantes
+% Dandelion = equações anteriores de capitulos
+% TealBlue = equações básicas
+
+\begin{multicols}{4}
+
+% {\small\noindent Capítulo 30: }
+
+\formulabox[BrickRed]{Fluxo}{$\Phi = B \cdot A \quad$ (\si{\weber})}{
+$\Phi$ = Fluxo magnético (\si{\weber}) \\
+$B$ = Campo magnético (\si{\tesla}) \\
+$A$ = Área (\si{\meter\squared})
+}
+
+\formulabox[RoyalBlue]{Lei de Faraday}{$\varepsilon_i = - N \frac{d\Phi}{dt} \quad $ (\si{\volt})}{
+
+}
+
+\formulabox[RoyalBlue]{Corrente}{$i = \frac{B l V}{R} \quad $ (\si{\ampere})}{
+$B$ = Campo magnético (\si{\tesla}) \\
+$l$ = Comprimento do condutor (\si{\meter}) \\
+$V$ = Velocidade do condutor (\si{\meter\per\second}) \\
+$R$ = Resistência (\si{\ohm})
+}
+
+\formulabox[RoyalBlue]{Potência}{$P = \frac{\varepsilon^2}{R} \quad $ (\si{\watt})}{
+$P$ = Potência (\si{\watt}) \\
+$\varepsilon$ = Força eletromotriz / fem (\si{\volt}) \\
+$R$ = Resistência (\si{\ohm})
+}
+
+\formulabox[BrickRed]{Lei de Faraday Magnetismo}{$\oint \vec{E} \cdot d\vec{s} = - \frac{d\Phi}{dt} \quad $ (\si{\volt})}{
+}
+
+\formulabox[BrickRed]{Indutância}{$L = \frac{N \cdot \Phi_B}{i} \quad $ (\si{\henry})}{
+$L$ = Indutância (\si{\henry}) \\
+$N$ = Número de espiras (adimensional) \\
+$\Phi_B$ = Fluxo por espira (\si{\weber}) \\
+$i$ = Corrente (\si{\ampere})
+}
+
+\columnbreak
+
+\formulabox[BrickRed]{Indutância do indutor}{$L = \mu_0 A l n^2 \quad $ (\si{\henry})}{
+$\mu_0$ = Permeabilidade do vácuo (\si{\henry\per\meter}) \\
+$A$ = Área da seção transversal (\si{\meter\squared}) \\
+$l$ = Comprimento do solenoide (\si{\meter}) \\
+$n$ = Espiras por unidade de comprimento (\si{\meter^{-1}}), $n=\dfrac{N}{l}$
+}
+
+\formulabox[BrickRed]{Força Eletromotriz}{$\varepsilon_L = - L \frac{di}{dt} \quad $ (\si{\volt})}{
+$\varepsilon_L$ = Fem induzida no indutor (\si{\volt}) \\
+$L$ = Indutância (\si{\henry}) \\
+$\dfrac{di}{dt}$ = Derivada da corrente (\si{\ampere\per\second})
+}
+
+\formulabox[BrickRed]{Corrente (Carregamento)}{$i(t) = \frac{\varepsilon}{R}\cdot ( 1 -e^{\frac{-Rt}{L}})  \quad $ (\si{\ampere})}{
+$i(t)$ = Corrente (\si{\ampere}) \\
+$\varepsilon$ = Força eletromotriz aplicada (\si{\volt}) \\
+$R$ = Resistência (\si{\ohm}) \\
+$L$ = Indutância (\si{\henry}) \\
+$t$ = Tempo (\si{\second})
+}
+
+% {
+% \setlength{\columnsep}{0.3cm}
+% \begin{multicols}{4}
+% \subformulabox[Fuchsia]{1/4}{$\frac{\mu_0 i}{8R}$}
+% \subformulabox[Fuchsia]{1/2}{$\frac{\mu_0 i}{4R}$}
+% \subformulabox[Fuchsia]{3/4}{$\frac{3\mu_0 i}{8R}$}
+% \subformulabox[Fuchsia]{1}{$\frac{\mu_0 i}{2R}$}
+% \end{multicols}
+% }
+
+\formulabox[RoyalBlue]{Potencial Resistor (Carregamento)}{$V_r(t) = \varepsilon(1 - e^{\frac{-Rt}{L}}) \quad $ (\si{\volt})}{
+$V_r(t)$ = Tensão no resistor (\si{\volt}) \\
+$\varepsilon$ = Força eletromotriz (\si{\volt}) \\
+$R$ = Resistência (\si{\ohm}) \\
+$L$ = Indutância (\si{\henry}) \\
+$t$ = Tempo (\si{\second})
+}
+
+\columnbreak
+
+\formulabox[RoyalBlue]{Potencial no Indutor (Carregamento)}{$V_L = \varepsilon \cdot e^{\frac{-Rt}{L}} \quad $ (\si{\volt})}{
+$V_L(t)$ = Tensão no indutor (\si{\volt}) \\
+$\varepsilon$ = Força eletromotriz (\si{\volt}) \\
+$R$ = Resistência (\si{\ohm}) \\
+$L$ = Indutância (\si{\henry}) \\
+$t$ = Tempo (\si{\second})
+}
+
+\formulabox[BrickRed]{Carga 1 $\tau$}{$i(t) = \frac{\varepsilon}{R} \cdot 0,63 \quad $ (\si{\ampere})}{
+$i(\tau) = 0{,}63\,\dfrac{\varepsilon}{R}$ \\
+$\varepsilon$ = Força eletromotriz (\si{\volt}) \\
+$R$ = Resistência (\si{\ohm}) \\
+$\tau = \dfrac{L}{R}$ = Constante de tempo (\si{\second})
+}
+
+\formulabox[RoyalBlue]{Descarga}{$i(t) = \frac{\varepsilon}{R}\cdot e^{\frac{-Rt}{L}} \quad $ (\si{\ampere})}{
+$i(t)$ = Corrente (\si{\ampere}) \\
+$\varepsilon$ = Força eletromotriz (\si{\volt}) \\
+$R$ = Resistência (\si{\ohm}) \\
+$L$ = Indutância (\si{\henry}) \\
+$t$ = Tempo (\si{\second})
+}
+
+\formulabox[BrickRed]{Descarga 1 $\tau$}{$i(t) = \frac{\varepsilon}{R} \cdot 0,37 \quad $ (\si{\ampere})}{
+$i(\tau) = 0{,}37\,\dfrac{\varepsilon}{R}$ \\
+$\varepsilon$ = Força eletromotriz (\si{\volt}) \\
+$R$ = Resistência (\si{\ohm}) \\
+$\tau = \dfrac{L}{R}$ = Constante de tempo (\si{\second})
+}
+
+\formulabox[BrickRed]{Energia Magnética}{$U_B = \frac{Li^2}{2} \quad $ (\si{\joule})}{
+$U_B$ = Energia magnética armazenada (\si{\joule}) \\
+$L$ = Indutância (\si{\henry}) \\
+$i$ = Corrente (\si{\ampere})
+}
+
+\formulabox[RoyalBlue]{Densidade Energia Magnética}{$u_B = \frac{B^2}{2\mu_0} \quad $ (\si{\joule\per\meter\cubed})}{
+$U_B$ = Densidade de energia magnética (\si{\joule\per\meter\cubed}) \\
+$B$ = Campo magnético (\si{\tesla}) \\
+$\mu_0$ = Permeabilidade do vácuo (\si{\henry\per\meter}) \\
+}
+
+{\small\noindent\textbf{Constantes úteis:}}
+\begin{flushleft}
+\constbox[BrickRed]{$e^-$}{$1{,}602 \times 10^{-19}$~\si{\coulomb}}
+\constbox[BrickRed]{$m_e$}{$9{,}109 \times 10^{-31}$~\si{\kilogram}}
+\constbox[BrickRed]{$\varepsilon_0$}{\SI{8.85e-12}{\coulomb\squared\per\newton\per\square\meter}}
+\constbox[BrickRed]{$\mu_0$}{$4\pi \times 10^{-7}$~\si{\tesla\per\meter\squared}}
+\constbox[BrickRed]{$1~\si{\henry}$}{= $1~\si{\weber\per\ampere}$}
+\constbox[BrickRed]{$1~\si{\weber}$}{= $1~\si{\tesla\per\meter\squared}$}
+\end{flushleft}
+
+\end{multicols}
