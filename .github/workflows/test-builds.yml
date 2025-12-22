@@ -44,11 +44,20 @@ jobs:
           # Build calculos and fisicas chapters individually
           make disciplines=calculos,fisicas VERBOSE=1
 
-      - name: Build combined PDF
+      - name: Build combined PDF (with log on failure)
         env:
           VERBOSE: 1
         run: |
-          make combined VERBOSE=1
+          set -o pipefail -x
+          make combined VERBOSE=1 || {
+            echo "make combined failed — showing build_combined.* files";
+            ls -la build_combined.* || true;
+            if [ -f build_combined.log ]; then
+              echo "==== build_combined.log ====";
+              tail -n 400 build_combined.log || true;
+            fi
+            exit 1
+          }
 
       - name: List generated PDFs
         run: |
