@@ -1,6 +1,7 @@
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 # Formulários — Coleção de folhas de fórmulas 📚
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 ---
 
@@ -9,23 +10,23 @@ Breve: coleções de resumos e folhas de fórmulas em LaTeX organizadas por disc
 ## Sumário
 
 - [Requisitos](#requisitos)
-- [Uso rápido](#uso-rápido)
-- [Construções por capítulo](#capitulos)
-- [Alvo combinado](#combinado)
-- [Integração contínua (CI)](#ci)
-- [Contribuição](#contribuicao)
-- [Licença](#licenca)
+- [Uso rapido](#uso-rapido)
+- [Construcoes por capitulo](#construcoes-por-capitulo)
+- [Alvo combinado](#alvo-combinado)
+- [Integracao continua (CI)](#integracao-continua-ci)
+- [Contribuicao](#contribuicao)
+- [Licenca](#licenca)
 
 ---
 
-## Requisitos <a name="requisitos"></a>
+## Requisitos
 
-- TeX (pdflatex) — TeX Live ou similar
+- TeX (pdflatex) — TeX Live ou similar. Observação: o pacote `siunitx` é necessário; no Debian/Ubuntu instale `texlive-science`.
 - make
 
 ---
 
-## Uso rápido <a name="uso-rapido"></a> ✅
+## Uso rapido
 
 - Gerar o documento principal:
 
@@ -43,14 +44,14 @@ make calculos       # -> calculos/calculos.pdf
 - Gerar um capítulo específico (exemplos):
 
 ```bash
-make fisicas cap30                  # forma posicional
+make fisicaiii cap30                  # forma posicional
 ```
 
 Observações:
+
 - Arquivos temporários (build_*.tex, .aux, .log, .synctex.gz) são removidos automaticamente após build bem-sucedido.
 
-
-## Fast builds
+## Builds rápidos
 
 Para ciclos de desenvolvimento rápidos, há um modo "fast" que compila em modo rascunho e roda pdflatex apenas uma vez:
 
@@ -62,7 +63,7 @@ make fisicas FAST=1
 
 Útil para checar o layout sem processar imagens pesadas.
 
-## Construções por capítulo (por disciplina) <a name="capitulos"></a>
+## Construcoes por capitulo
 
 Gera um PDF por capítulo (arquivo individual dentro do diretório da disciplina). Use o alvo `disciplinas` (pt) ou `disciplines` (en) com a variável contendo disciplinas separadas por vírgula.
 
@@ -77,6 +78,7 @@ make disciplines="calculos"
 ```
 
 Comportamento:
+
 - Cria um PDF para cada entrada listada em `CALCULOS_INCLUDES` e `FISICAS_INCLUDES` (por exemplo: `calculos/calculoi/calculoi_calculo_basico.pdf`, `fisicas/fisicaiii/fisicaiii_cap30.pdf`).
 - Silencioso por padrão; passe `VERBOSE=1` para ver os passos:
 
@@ -84,14 +86,22 @@ Comportamento:
 make disciplines="calculos,fisicas" VERBOSE=1
 ```
 
+## Alvo combinado
+
+O alvo `combined` gera um único PDF `combined.pdf` contendo as seções de Cálculos e Físicas.
+
+```bash
+make combined VERBOSE=1
+```
+
 ---
 
-## Integração contínua (CI) <a name="ci"></a>
+## Integracao continua (CI)
 
 Há um workflow GitHub Actions em `.github/workflows/test-builds.yml` que executa em push e em pull requests. O job:
 
 - instala pacotes LaTeX mínimos na runner;
-- executa `make disciplines="calculos,fisicas" VERBOSE=1` (gera PDFs por capítulo);
+- executa `make disciplines=calculos,fisicas VERBOSE=1` (gera PDFs por capítulo);
 - executa `make combined VERBOSE=1` (gera `combined.pdf`);
 - publica os PDFs como artifacts para inspeção.
 
@@ -115,7 +125,7 @@ Os arquivos são gerados nas pastas correspondentes (e.g., `calculos/...pdf`, `f
 
 ---
 
-## Contribuição <a name="contribuicao"></a>
+## Contribuicao
 
 - Envie PRs para mudanças; inclua uma descrição clara e, quando possível, um teste ou verificação simples.
 - Prefira imagens vetoriais (TikZ, PDF) e considere marcar recursos pesados para serem ignorados em builds rápidos (FAST=1).
@@ -127,7 +137,7 @@ Os arquivos são gerados nas pastas correspondentes (e.g., `calculos/...pdf`, `f
 
 ---
 
-## Licença
+## Licenca
 
 MIT — veja `LICENSE`.
 
