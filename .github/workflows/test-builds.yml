@@ -18,7 +18,7 @@ jobs:
       - name: Install TeX and prerequisites
         run: |
           sudo apt-get update -y
-          sudo apt-get install -y --no-install-recommends texlive-latex-extra texlive-fonts-recommended texlive-xetex make
+          sudo apt-get install -y --no-install-recommends texlive-latex-extra texlive-fonts-recommended texlive-xetex texlive-science make
 
       - name: Show environment & make version
         run: |
