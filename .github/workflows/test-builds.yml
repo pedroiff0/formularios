@@ -28,7 +28,7 @@ jobs:
           VERBOSE: 1
         run: |
           # Build calculos and fisicas chapters individually
-          make disciplines="calculos,fisicas" VERBOSE=1
+          make disciplines=calculos,fisicas VERBOSE=1
 
       - name: Build combined PDF
         env:
