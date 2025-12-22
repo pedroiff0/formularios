@@ -114,8 +114,11 @@ calculos:
 	@printf '%s\n' '\documentclass[a4paper]{report}' > build_calculos.tex
 	@printf '%s\n' '\usepackage{latexconfig/forms}' >> build_calculos.tex
 	@printf '%s\n' '\begin{document}' >> build_calculos.tex
-	@for inc in $(CALCULOS_INCLUDES); do echo "\include{$$inc}" >> build_calculos.tex; done
-	@echo "\end{document}" >> build_calculos.tex
+	@for inc in $(CALCULOS_INCLUDES); do printf '%s\n' "\\include{$$inc}" >> build_calculos.tex; done
+	@printf '%s\n' '\end{document}' >> build_calculos.tex
+	@# sanitize line endings and remove control characters (avoid stray ESC on some runners)
+	@sed -i 's/\r$$//' build_calculos.tex >/dev/null 2>&1 || true
+	@LC_ALL=C tr -d '\033' < build_calculos.tex > build_calculos.tex.tmp && mv build_calculos.tex.tmp build_calculos.tex || true
 	@mkdir -p calculos
 	@$(TEX) build_calculos.tex >/dev/null || (echo 'pdflatex failed' >&2; exit 1)
 	@$(TEX) build_calculos.tex >/dev/null || (echo 'pdflatex failed' >&2; exit 1)
@@ -128,8 +131,11 @@ fisicas:
 	@printf '%s\n' '\documentclass[a4paper]{report}' > build_fisicas.tex
 	@printf '%s\n' '\usepackage{latexconfig/forms}' >> build_fisicas.tex
 	@printf '%s\n' '\begin{document}' >> build_fisicas.tex
-	@for inc in $(FISICAS_INCLUDES); do echo "\include{$$inc}" >> build_fisicas.tex; done
-	@echo "\end{document}" >> build_fisicas.tex
+	@for inc in $(FISICAS_INCLUDES); do printf '%s\n' "\\include{$$inc}" >> build_fisicas.tex; done
+	@printf '%s\n' '\end{document}' >> build_fisicas.tex
+	@# sanitize line endings and remove control characters (avoid stray ESC on some runners)
+	@sed -i 's/\r$$//' build_fisicas.tex >/dev/null 2>&1 || true
+	@LC_ALL=C tr -d '\033' < build_fisicas.tex > build_fisicas.tex.tmp && mv build_fisicas.tex.tmp build_fisicas.tex || true
 	@mkdir -p fisicas
 	@$(TEX) build_fisicas.tex >/dev/null || (echo 'pdflatex failed' >&2; exit 1)
 	@$(TEX) build_fisicas.tex >/dev/null || (echo 'pdflatex failed' >&2; exit 1)
@@ -144,11 +150,14 @@ combined:
 	@printf '%s\n' '\documentclass[a4paper]{report}' > build_combined.tex
 	@printf '%s\n' '\usepackage{latexconfig/forms}' >> build_combined.tex
 	@printf '%s\n' '\begin{document}' >> build_combined.tex
-	@echo '\chapter{Cálculos}' >> build_combined.tex
-	@for inc in $(CALCULOS_INCLUDES); do echo "\\include{$$inc}" >> build_combined.tex; done
-	@echo '\chapter{Físicas}' >> build_combined.tex
-	@for inc in $(FISICAS_INCLUDES); do echo "\\include{$$inc}" >> build_combined.tex; done
-	@echo '\end{document}' >> build_combined.tex
+	@printf '%s\n' '\chapter{Cálculos}' >> build_combined.tex
+	@for inc in $(CALCULOS_INCLUDES); do printf '%s\n' "\\include{$$inc}" >> build_combined.tex; done
+	@printf '%s\n' '\chapter{Físicas}' >> build_combined.tex
+	@for inc in $(FISICAS_INCLUDES); do printf '%s\n' "\\include{$$inc}" >> build_combined.tex; done
+	@printf '%s\n' '\end{document}' >> build_combined.tex
+	@# sanitize line endings and remove control characters (avoid stray ESC on some runners)
+	@sed -i 's/\r$$//' build_combined.tex >/dev/null 2>&1 || true
+	@LC_ALL=C tr -d '\033' < build_combined.tex > build_combined.tex.tmp && mv build_combined.tex.tmp build_combined.tex || true
 	@$(TEX) build_combined.tex >/dev/null || (echo 'pdflatex failed' >&2; exit 1)
 	@$(TEX) build_combined.tex >/dev/null || (echo 'pdflatex failed' >&2; exit 1)
 	@if [ -f build_combined.pdf ]; then mv -f build_combined.pdf combined.pdf; echo "Saved combined.pdf"; else echo 'Error: build_combined.pdf not generated' >&2; exit 1; fi
