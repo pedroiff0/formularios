@@ -20,8 +20,22 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y --no-install-recommends texlive-latex-extra texlive-fonts-recommended texlive-xetex make
 
-      - name: Show make version
-        run: make --version
+      - name: Show environment & make version
+        run: |
+          echo "USER: $(whoami)"; pwd; ls -la scripts || true; ls -la calculos || true; pdflatex --version || true; make --version
+
+      - name: Debug single chapter build (verbose)
+        env:
+          VERBOSE: 1
+        run: |
+          set -o pipefail -x
+          echo "Testing build_chapter.sh calculoi calculo_basico";
+          ./scripts/build_chapter.sh calculoi calculo_basico || {
+            echo "Build failed. Listing calculos/calculoi:"; ls -la calculos/calculoi || true;
+            echo "Listing logs:"; ls -la calculos/calculoi/*.log || true;
+            for f in calculos/calculoi/*.log; do echo "==== $f ===="; tail -n 200 "$f" || true; done;
+            exit 1;
+          }
 
       - name: Build per-chapter PDFs (disciplines)
         env:
