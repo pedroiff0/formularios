@@ -11,6 +11,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Ensure scripts are executable
+        run: |
+          chmod +x scripts/build_chapter.sh || true
+
       - name: Install TeX and prerequisites
         run: |
           sudo apt-get update -y
