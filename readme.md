@@ -1,161 +1,140 @@
-<p align="center">
-  <img width=160px src="https://i.imgur.com/FxL5qM0.jpg" alt="Formulários logo">
-</p>
-
-<h2 align="center">Formulários — Coleção de folhas de fórmulas</h2>
-
-<div align="center">
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
-</div>
+
+# Formulários — Coleção de folhas de fórmulas 📚
 
 ---
 
-<p align="center"> 🤖 Few lines describing what your bot does.
-    <br> 
-</p>
+Breve: coleções de resumos e folhas de fórmulas em LaTeX organizadas por disciplina.
 
-## 📝 Table of Contents
+## Sumário
 
-- [About](#about)
-- [Build & Usage](#build)
-- [Fast builds](#fast)
-- [Per-chapter builds](#per-chapter)
-- [Contributing](#contributing)
-- [Authors](#authors)
-
-## 🧐 About <a name = "about"></a>
-
-This repository collects compact formula sheets for several disciplines (Cálculo, Física, Álgebra, Eletrônica, Equações Diferenciais, Fenômenos de Transporte, Cálculo Numérico, Matemática Discreta). Files are plain LaTeX sources and a small Makefile is provided to build per-discipline PDFs or specific chapters.
+- [Requisitos](#requisitos)
+- [Uso rápido](#uso-rápido)
+- [Construções por capítulo](#capitulos)
+- [Alvo combinado](#combinado)
+- [Integração contínua (CI)](#ci)
+- [Contribuição](#contribuicao)
+- [Licença](#licenca)
 
 ---
 
-## 🛠️ Build & Usage <a name = "build"></a> ✅
+## Requisitos <a name="requisitos"></a>
 
-Requirements:
-- TeX Live (pdflatex)
+- TeX (pdflatex) — TeX Live ou similar
 - make
 
-Common examples:
+---
 
-- Build full main document:
+## Uso rápido <a name="uso-rapido"></a> ✅
+
+- Gerar o documento principal:
 
 ```bash
 make all
 ```
 
-- Build an entire discipline (PDF saved in discipline folder):
+- Gerar toda a disciplina (PDF dentro da pasta da disciplina):
 
 ```bash
 make fisicas        # -> fisicas/fisicas.pdf
 make calculos       # -> calculos/calculos.pdf
 ```
 
-- Build a specific chapter (by name):
+- Gerar um capítulo específico (exemplos):
 
 ```bash
-make fisicas CHAP=cap30           # builds fisicas_cap30.pdf
-make fisicas cap30                # positional form
-make fisicas F=cap30              # short flag
-make calculos CHAP=calculoiv/calciv   # accepts full path too
+make fisicas cap30                  # forma posicional
 ```
 
-Notes:
-- Output filenames with single-chapter selection are suffixed with the chapter basename: e.g. `fisicas/fisicas_cap30.pdf` or `calculos/calculos_calciv.pdf`.
-- Temporary files (build_*.tex, .aux, .log, .synctex.gz) are removed automatically after a successful build.
+Observações:
+- Arquivos temporários (build_*.tex, .aux, .log, .synctex.gz) são removidos automaticamente após build bem-sucedido.
 
-## ⚡ Fast builds <a name = "fast"></a>
 
-To speed up iteration, a fast mode compiles in "draft" graphics mode and only runs pdflatex once:
+## Fast builds
+
+Para ciclos de desenvolvimento rápidos, há um modo "fast" que compila em modo rascunho e roda pdflatex apenas uma vez:
 
 ```bash
-make fisicas-fast      # shorthand target that runs `make fisicas FAST=1`
-# or
+make fisicas-fast      # equivalente a: make fisicas FAST=1
+# ou
 make fisicas FAST=1
 ```
 
-This disables inclusion of external raster/vector images (graphicx in draft) and compiles only once — useful for quick checks.
+Útil para checar o layout sem processar imagens pesadas.
 
-## 🧩 Per-chapter selection (examples) <a name = "per-chapter"></a>
+## Construções por capítulo (por disciplina) <a name="capitulos"></a>
 
-You can select by basename or full path:
+Gera um PDF por capítulo (arquivo individual dentro do diretório da disciplina). Use o alvo `disciplinas` (pt) ou `disciplines` (en) com a variável contendo disciplinas separadas por vírgula.
+
+Exemplos:
 
 ```bash
-make calculos calciv            # positional goal `calciv` -> calculos_calciv.pdf
-make calculos CHAP=calculoiv/calciv
-make calculos F=calciv
+# gera um PDF por capítulo em calculos/ e fisicas/
+make disciplines="calculos,fisicas"       # ou make disciplinas="calculos,fisicas"
+
+# gerar só calculos
+make disciplines="calculos"
 ```
 
-If the provided chapter name doesn't match any include, the full discipline PDF is built as a fallback.
+Comportamento:
+- Cria um PDF para cada entrada listada em `CALCULOS_INCLUDES` e `FISICAS_INCLUDES` (por exemplo: `calculos/calculoi/calculoi_calculo_basico.pdf`, `fisicas/fisicaiii/fisicaiii_cap30.pdf`).
+- Silencioso por padrão; passe `VERBOSE=1` para ver os passos:
+
+```bash
+make disciplines="calculos,fisicas" VERBOSE=1
+```
 
 ---
 
-## Contributing <a name = "contributing"></a>
+## Integração contínua (CI) <a name="ci"></a>
 
-- Keep LaTeX code tidy; prefer `align` for multi-line equations and `tcolorbox` for formatted boxes.
-- When adding diagrams, prefer vector TikZ where possible; consider heavy drawings in separate files or mark them to be skipped in fast builds if you want rapid iteration.
-- Add unit checks and simple comments for complicated derivations.
+Há um workflow GitHub Actions em `.github/workflows/test-builds.yml` que executa em push e em pull requests. O job:
 
-## Authors <a name = "authors"></a>
+- instala pacotes LaTeX mínimos na runner;
+- executa `make disciplines="calculos,fisicas" VERBOSE=1` (gera PDFs por capítulo);
+- executa `make combined VERBOSE=1` (gera `combined.pdf`);
+- publica os PDFs como artifacts para inspeção.
 
-- Pedro — repository owner and maintainer
+O job falhará caso qualquer build retorne erro — útil como teste automático de regressão.
 
 ---
 
-If you'd like I can add CI (GitHub Actions) to validate that the project builds on push and that each discipline compiles successfully.
+## Testes locais
 
-<sup>Beep boop. I am a bot. If there are any issues, contact my [Master](https://www.reddit.com/message/compose/?to=PositivePlayer1&subject=/u/Wordbook_Bot)</sup>
+Para reproduzir o que o CI faz, execute localmente:
 
-<sup>Want to make a similar reddit bot? Check out: [GitHub](https://github.com/kylelobo/Reddit-Bot)</sup>
+```bash
+# gerar um PDF por capítulo para calculos e fisicas
+make disciplines="calculos,fisicas" VERBOSE=1
 
-## 🏁 Getting Started <a name = "getting_started"></a>
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them.
-
-```
-Give examples
+# gerar combinado
+make combined VERBOSE=1
 ```
 
-### Installing
+Os arquivos são gerados nas pastas correspondentes (e.g., `calculos/...pdf`, `fisicas/...pdf`) e `combined.pdf` é criado no repositório raiz.
 
-A step by step series of examples that tell you how to get a development env running.
+---
 
-Say what the step will be
+## Contribuição <a name="contribuicao"></a>
 
-```
-Give the example
-```
+- Envie PRs para mudanças; inclua uma descrição clara e, quando possível, um teste ou verificação simples.
+- Prefira imagens vetoriais (TikZ, PDF) e considere marcar recursos pesados para serem ignorados em builds rápidos (FAST=1).
+- Ao alterar `Makefile` ou scripts de build, adicione verificações que possam ser executadas no CI.
 
-And repeat
+## Autoria
 
-```
-until finished
-```
+- Pedro — mantenedor do repositório
 
-End with an example of getting some data out of the system or using it for a little demo.
+---
 
-## 🚀 Deploying your own bot <a name = "deployment"></a>
+## Licença
 
-To see an example project on how to deploy your bot, please see my own configuration:
+MIT — veja `LICENSE`.
 
-- **Heroku**: https://github.com/kylelobo/Reddit-Bot#deploying_the_bot
+---
 
-## ⛏️ Built Using <a name = "built_using"></a>
+Se quiser, adiciono um badge do CI (status) no topo do README e/ou um alvo `verify` no `Makefile` que confirme a existência dos PDFs esperados (útil para CI).
 
-- [PRAW](https://praw.readthedocs.io/en/latest/) - Python Reddit API Wrapper
-- [Heroku](https://www.heroku.com/) - SaaS hosting platform
+---
 
-## ✍️ Authors <a name = "authors"></a>
-
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
-
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
-
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+Obrigado — documentação simplificada e focada nas operações de build está pronta. Se quiser, posso também abrir um PR com essas mudanças, adicionar o badge do workflow e criar um alvo `verify` que o CI utilize para validar os PDFs.
