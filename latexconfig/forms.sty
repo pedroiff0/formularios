@@ -22,7 +22,10 @@
 \usepackage{amsmath,amssymb} % matemáticas: operadores, símbolos, ambientes de ecuções
 \usepackage{xparse}
 \setcounter{secnumdepth}{3} % permitir numeração até subsubsection
-\numberwithin{equation}{subsubsection} % numerar equações por subsubsection
+\numberwithin{equation}{subsection} % numerar equações por subsection
+% Force equation numbers to be section.subsection.equation (hide chapter)
+\renewcommand{\theequation}{\arabic{section}.\arabic{subsection}.\arabic{equation}} % exemplo: 3.5.1
+
 % Redefinir os comandos de seção para não imprimir títulos, apenas atualizar numeração
 % Mantém comportamento de seções "starred" (não numeradas) também
 \RenewDocumentCommand{\section}{s o m}{%

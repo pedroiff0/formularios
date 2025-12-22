@@ -53,7 +53,18 @@ fi
 # create temporary wrapper in /tmp
 tmpfile=$(mktemp /tmp/tmp_capXXXXXX.tex)
 trap 'rm -f "$tmpfile"' EXIT
+# copy preamble up to \begin{document}
 sed -n '1,/\\begin{document}/p' main.tex > "$tmpfile"
+# Append safe reset lines using a literal here-doc (preserves backslashes)
+cat >> "$tmpfile" <<'TEX'
+% Reset counters for standalone chapter build
+\setcounter{chapter}{0}
+\setcounter{section}{1} % start at section 1 to avoid leading zero
+\setcounter{subsection}{1}
+\setcounter{equation}{0}
+\renewcommand{\theequation}{\arabic{section}.\arabic{subsection}.\arabic{equation}}
+TEX
+# finally add the chapter input and end document
 printf '%s\n' "$input_line" "\\end{document}" >> "$tmpfile"
 
 # run pdflatex twice silently
