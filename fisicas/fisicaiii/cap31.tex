@@ -1,0 +1,94 @@
+\begin{multicols*}{3}
+
+% --- CAPÍTULO 31: OSCILAÇÕES E CA ---
+
+\formulabox[OliveGreen]{Frequência Angular LC}{$\omega = \frac{1}{\sqrt{LC}} \quad$ (\si{\radian\per\second})}{
+$\omega$ = Frequência angular real (\si{\radian\per\second}) \\
+$L$ = Indutância (\si{\henry}) \\
+$C$ = Capacitância (\si{\farad}) \\
+\textit{Dica: Use para determinar a frequência de oscilação em circuitos LC ideais. Base para outras fórmulas de oscilação.}
+}
+
+\formulabox[OliveGreen]{Carga no Capacitor}{$q(t) = Q \cos(\omega t + \phi) \quad$ (\si{\coulomb})}{
+$Q$ = Carga máxima (\si{\coulomb}) \\
+$\omega$ = Frequência angular (\si{\radian\per\second}) \\
+$\phi$ = Constante de fase (\si{\radian}) \\
+\textit{Dica: Fórmula para descrever a variação da carga em um capacitor em um circuito LC.}
+}
+
+\formulabox[OliveGreen]{Energia Total LC}{$U = U_B + U_E = \frac{Li^2}{2} + \frac{q^2}{2C}$}{
+\textit{Dica: Mostra a conservação de energia em circuitos LC. Relaciona energia magnética e elétrica.}
+}
+
+\columnbreak
+
+\formulabox[Violet]{Reatância Capacitiva}{$X_C = \frac{1}{\omega_d C} \quad$ (\si{\ohm})}{
+$X_C$ = Oposição do capacitor (\si{\ohm}) \\
+$\omega_d$ = Freq. angular da fonte (\si{\radian\per\second}) \\
+$C$ = Capacitância (\si{\farad}) \\
+\textit{Dica: Use para calcular a oposição ao fluxo de corrente alternada em capacitores.}
+}
+
+\formulabox[Violet]{Reatância Indutiva}{$X_L = \omega_d L \quad$ (\si{\ohm})}{
+$X_L$ = Oposição do indutor (\si{\ohm}) \\
+$\omega_d$ = Freq. angular da fonte (\si{\radian\per\second}) \\
+$L$ = Indutância (\si{\henry}) \\
+\textit{Dica: Útil para determinar a oposição ao fluxo de corrente alternada em indutores.}
+}
+
+\formulabox[RoyalBlue]{Impedância RLC}{$Z = \sqrt{R^2 + (X_L - X_C)^2} \quad$ (\si{\ohm})}{
+$Z$ = Impedância total do circuito (\si{\ohm}) \\
+$R$ = Resistência (\si{\ohm}) \\
+$X_L, X_C$ = Reatâncias (\si{\ohm}) \\
+\textit{Dica: Fórmula geral para calcular a oposição total em circuitos RLC.}
+}
+
+\formulabox[RoyalBlue]{Ângulo de Fase}{$\tan \phi = \frac{X_L - X_C}{R}$}{
+$\phi > 0$: Circuito indutivo ($V$ adianta $I$) \\
+$\phi < 0$: Circuito capacitivo ($I$ adianta $V$) \\
+$\phi = 0$: Ressonância \\
+\textit{Dica: Determina o comportamento do circuito em relação à fase entre tensão e corrente.}
+}
+
+\columnbreak
+
+\formulabox[BrickRed]{Corrente de Pico}{$I = \frac{\varepsilon_m}{Z} \quad$ (\si{\ampere})}{
+$\varepsilon_m$ = Amplitude da tensão da fonte (\si{\volt}) \\
+$Z$ = Impedância (\si{\ohm})
+}
+
+\formulabox[RoyalBlue]{Valores RMS - Tensão}{$V_{rms} = \frac{V_{max}}{\sqrt{2}}$}{
+Válido para tensões senoidais puras.
+}
+
+\formulabox[RoyalBlue]{Valores RMS - Corrente}{$I_{rms} = \frac{I_{max}}{\sqrt{2}}$}{
+Válido para correntes senoidais puras.
+}
+
+\formulabox[RoyalBlue]{Valores RMS - Força Eletromotriz}{$\varepsilon_{rms} = \frac{\varepsilon_{max}}{\sqrt{2}}$}{
+Válido para forças eletromotrizes senoidais puras.
+}
+
+\formulabox[OliveGreen]{Potência Média}{$P_{med} = I_{rms}^2 R = \varepsilon_{rms} I_{rms} \cos \phi$}{
+$\cos \phi$ = Fator de potência \\
+Apenas o resistor dissipa energia.
+}
+
+\formulabox[BrickRed]{Transformador Ideal - Tensão}{$\frac{V_s}{V_p} = \frac{N_s}{N_p}$}{
+$V_p, V_s$ = Tensões primário/secundário (\si{\volt}) \\
+$N_p, N_s$ = Número de espiras \\
+$R_p, R_s$ = Resistências primário/secundário (\si{\ohm})
+}
+
+\formulabox[BrickRed]{Transformador Ideal - Corrente}{$\frac{I_p}{I_s} = \frac{N_s}{N_p}$}{
+$I_p, I_s$ = Correntes primário/secundário (\si{\ampere}) \\
+$N_p, N_s$ = Número de espiras \\
+$R_p, R_s$ = Resistências primário/secundário (\si{\ohm})
+}
+
+\formulabox[Fuchsia]{Amortecimento RLC}{$q(t) = Q e^{-Rt/2L} \cos(\omega' t + \phi)$}{
+$\omega' = \sqrt{\omega^2 - (R/2L)^2}$ \\
+Representa o decaimento da amplitude da carga devido à resistência.
+}
+
+\end{multicols*}
