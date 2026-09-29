@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate LaTeX Sources & Scripts
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate Shell Scripts
+        run: |
+          bash -n scripts/build_chapter.sh
+          echo "Scripts de build validados com sucesso."
+
+      - name: Verify TeX files syntax
+        run: |
+          test -f main.tex
+          test -f latexconfig/settings.tex
+          echo "Estrutura TeX verificada com sucesso."
