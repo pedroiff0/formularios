@@ -20,7 +20,7 @@ Este projeto faz parte do [portfólio](https://portfolio.phrandrade.com/#formula
 - [Trabalhando no projeto](#trabalhando-no-projeto)
 - [Status](#status)
 - [Como citar](#como-citar)
-- [Autores](#autores)
+- [Autor](#autor)
 - [Licença](#licença)
 
 ## Resumo
@@ -161,7 +161,17 @@ Estado atual: **ativo**. Faltam capítulos das disciplinas dos próximos períod
 
 Use o arquivo [CITATION.cff](CITATION.cff) (botão "Cite this repository" do GitHub).
 
-## Autores
+## Autor
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/pedroiff0"><img src="https://github.com/pedroiff0.png?size=120" width="96" height="96" alt="Pedro Henrique Rocha de Andrade" /><br /><sub><b>Pedro Henrique Rocha de Andrade</b></sub></a><br />Autor e mantenedor</td>
+  </tr>
+</table>
+
+### Contribuidores
+
+[![Contribuidores](https://contrib.rocks/image?repo=pedroiff0/formularios)](https://github.com/pedroiff0/formularios/graphs/contributors)
 
 ## Licença
 
