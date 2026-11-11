@@ -26,6 +26,7 @@ Este projeto faz parte do [portfólio](https://portfolio.phrandrade.com/#formula
 - [Suporte](#suporte)
 - [Estrelas e atividade](#estrelas-e-atividade)
 - [Autor](#autor)
+- [Contribuidores](#contribuidores)
 - [Licença](#licença)
 
 ## Resumo
@@ -197,7 +198,7 @@ Dúvidas e pedidos de ajuda: veja [SUPPORT.md](SUPPORT.md).
   </tr>
 </table>
 
-### Contribuidores
+## Contribuidores
 
 [![Contribuidores](https://contrib.rocks/image?repo=pedroiff0/formularios)](https://github.com/pedroiff0/formularios/graphs/contributors)
 
