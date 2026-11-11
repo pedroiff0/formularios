@@ -1,150 +1,173 @@
+# Formulários
 
-# Formulários — Coleção de folhas de fórmulas 📚
+[![CI](https://github.com/pedroiff0/formularios/actions/workflows/ci.yml/badge.svg)](https://github.com/pedroiff0/formularios/actions/workflows/ci.yml)
+[![Licença](https://img.shields.io/github/license/pedroiff0/formularios)](LICENSE)
+[![Estrelas](https://img.shields.io/github/stars/pedroiff0/formularios?style=flat&logo=github)](https://github.com/pedroiff0/formularios/stargazers)
+[![Status](https://img.shields.io/badge/status-ativo-informational)](#status)
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+Coleção de folhas de fórmulas e resumos em LaTeX, organizada por disciplina (Cálculo e Física), com um PDF por capítulo e um PDF combinado.
 
----
-
-Breve: coleções de resumos e folhas de fórmulas em LaTeX organizadas por disciplina.
+Este projeto faz parte do [portfólio](https://portfolio.phrandrade.com/#formularios) de Pedro Rocha.
 
 ## Sumário
 
-- [Requisitos](#requisitos)
-- [Uso rapido](#uso-rapido)
-- [Construcoes por capitulo](#construcoes-por-capitulo)
-- [Alvo combinado](#alvo-combinado)
-- [Integracao continua (CI)](#integracao-continua-ci)
-- [Contribuicao](#contribuicao)
-- [Licenca](#licenca)
+- [Resumo](#resumo)
+- [Contexto](#contexto)
+- [Tecnologias](#tecnologias)
+- [Começando](#começando)
+- [Como usar](#como-usar)
+- [Reprodução dos resultados](#reprodução-dos-resultados)
+- [Metodologia](#metodologia)
+- [Dados](#dados)
+- [Estrutura do repositório](#estrutura-do-repositório)
+- [Trabalhando no projeto](#trabalhando-no-projeto)
+- [Status](#status)
+- [Como citar](#como-citar)
+- [Autores](#autores)
+- [Licença](#licença)
 
----
+## Resumo
 
-## Requisitos
+Folhas de fórmulas costumam ficar espalhadas em cadernos e PDFs de origens diferentes, com notação inconsistente. Este repositório reúne, em LaTeX, as fórmulas das disciplinas de Cálculo e Física do curso, com a mesma configuração visual e um Makefile que gera um PDF por capítulo, um por disciplina e um combinado. Limitação: o conteúdo cobre só as disciplinas já cursadas e não substitui o material do professor.
 
-- TeX (pdflatex) — TeX Live ou similar. Observação: o pacote `siunitx` é necessário; no Debian/Ubuntu instale `texlive-science`.
-- make
+## Contexto
 
----
+Material de estudo da graduação em Engenharia de Computação (IFF), mantido para consulta rápida em provas e listas.
 
-## Uso rapido
+### Objetivos
 
-- Gerar o documento principal:
+- Padronizar a notação das fórmulas entre capítulos e disciplinas.
+- Gerar PDFs de consulta curtos, por capítulo.
+- Garantir por CI que todos os capítulos compilam.
+
+## Tecnologias
+
+## Tecnologias
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![LaTeX](https://img.shields.io/badge/LaTeX-008080?style=flat&logo=latex&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=githubactions&logoColor=white)
+![Make](https://img.shields.io/badge/Make-6D00CC?style=flat&logo=gnu&logoColor=white)
+![Shell](https://img.shields.io/badge/Shell-4EAA25?style=flat&logo=gnubash&logoColor=white)
+
+## Começando
+
+### Pré-requisitos
+
+- TeX Live com `pdflatex` e o pacote `siunitx` (Debian/Ubuntu: `texlive-science`).
+- `make`.
+
+### Instalação
+
+```bash
+git clone https://github.com/pedroiff0/formularios.git
+cd formularios
+```
+
+### Conferindo que funcionou
 
 ```bash
 make all
 ```
 
-- Gerar toda a disciplina (PDF dentro da pasta da disciplina):
+Saída esperada: o `main.pdf` é gerado na raiz e os arquivos temporários são removidos.
+
+## Como usar
+
+### Exemplo 1: PDF de uma disciplina
 
 ```bash
-make fisicas        # -> fisicas/fisicas.pdf
-make calculos       # -> calculos/calculos.pdf
+make fisicas
 ```
 
-- Gerar um capítulo específico (exemplos):
+Gera `fisicas/fisicas.pdf`. Para Cálculo: `make calculos`.
+
+### Exemplo 2: PDF de um capítulo
 
 ```bash
-make fisicaiii cap30                  # forma posicional
+make fisicaiii cap30
 ```
 
-Observações:
+### Opções principais
 
-- Arquivos temporários (build_*.tex, .aux, .log, .synctex.gz) são removidos automaticamente após build bem-sucedido.
+| Opção | Efeito |
+| :--- | :--- |
+| `FAST=1` | Compila em modo rascunho, uma única passada |
+| `VERBOSE=1` | Mostra os passos de cada build |
+| `disciplines="calculos,fisicas"` | Gera um PDF por capítulo das disciplinas listadas |
 
-## Builds rápidos
+## Reprodução dos resultados
 
-Para ciclos de desenvolvimento rápidos, há um modo "fast" que compila em modo rascunho e roda pdflatex apenas uma vez:
+Cada PDF é regenerado por um comando `make`; o CI refaz todos a cada push.
+
+| Resultado | Comando |
+| :--- | :--- |
+| Um PDF por capítulo | `make disciplines="calculos,fisicas" VERBOSE=1` |
+| PDF combinado | `make combined VERBOSE=1` |
+
+## Metodologia
+
+Cada capítulo é um arquivo `.tex` incluído por disciplina. O Makefile monta um arquivo temporário (`build_*.tex`) que inclui só o capítulo pedido, compila com `pdflatex` e apaga os auxiliares.
+
+```mermaid
+flowchart LR
+    A[capítulo .tex] --> B[build_*.tex]
+    B --> C[pdflatex]
+    C --> D[PDF do capítulo]
+```
+
+## Dados
+
+Não há dados externos: o conteúdo é texto LaTeX do próprio repositório.
+
+## Estrutura do repositório
+
+```text
+formularios/
+├── calculos/      capítulos de Cálculo
+├── fisicas/       capítulos de Física
+├── animacoes/     figuras animadas
+├── latexconfig/   preâmbulo e estilo compartilhados
+├── scripts/       utilitários de build
+├── main.tex       documento principal
+└── Makefile       alvos de compilação
+```
+
+## Trabalhando no projeto
+
+### Ambiente de desenvolvimento
 
 ```bash
-make fisicas-fast      # equivalente a: make fisicas FAST=1
-# ou
-make fisicas FAST=1
+make fisicas-fast
 ```
 
-Útil para checar o layout sem processar imagens pesadas.
+### Fluxo de trabalho
 
-## Construcoes por capitulo
+1. Crie uma branch a partir de `main`: `git checkout -b feat/<assunto-curto>`.
+2. Commits no padrão [Conventional Commits](https://www.conventionalcommits.org/pt-br/).
+3. Rode `make combined` antes de abrir o pull request.
+4. Registre a mudança na seção `Unreleased` de [CHANGELOG.md](CHANGELOG.md).
 
-Gera um PDF por capítulo (arquivo individual dentro do diretório da disciplina). Use o alvo `disciplinas` (pt) ou `disciplines` (en) com a variável contendo disciplinas separadas por vírgula.
+### Convenções
 
-Exemplos:
+Um capítulo por arquivo, notação do preâmbulo em `latexconfig/` e um parágrafo por linha no texto.
 
-```bash
-# gera um PDF por capítulo em calculos/ e fisicas/
-make disciplines="calculos,fisicas"       # ou make disciplinas="calculos,fisicas"
+## Status
 
-# gerar só calculos
-make disciplines="calculos"
-```
+Estado atual: **ativo**. Faltam capítulos das disciplinas dos próximos períodos.
 
-Comportamento:
+- [x] Cálculo e Física com build por capítulo
+- [x] CI que compila todos os capítulos
+- [ ] Novas disciplinas
 
-- Cria um PDF para cada entrada listada em `CALCULOS_INCLUDES` e `FISICAS_INCLUDES` (por exemplo: `calculos/calculoi/calculoi_calculo_basico.pdf`, `fisicas/fisicaiii/fisicaiii_cap30.pdf`).
-- Silencioso por padrão; passe `VERBOSE=1` para ver os passos:
+## Como citar
 
-```bash
-make disciplines="calculos,fisicas" VERBOSE=1
-```
+Use o arquivo [CITATION.cff](CITATION.cff) (botão "Cite this repository" do GitHub).
 
-## Alvo combinado
+## Autores
 
-O alvo `combined` gera um único PDF `combined.pdf` contendo as seções de Cálculos e Físicas.
+## Licença
 
-```bash
-make combined VERBOSE=1
-```
+MIT. Veja [LICENSE](LICENSE).
 
----
-
-## Integracao continua (CI)
-
-Há um workflow GitHub Actions em `.github/workflows/test-builds.yml` que executa em push e em pull requests. O job:
-
-- instala pacotes LaTeX mínimos na runner;
-- executa `make disciplines=calculos,fisicas VERBOSE=1` (gera PDFs por capítulo);
-- executa `make combined VERBOSE=1` (gera `combined.pdf`);
-- publica os PDFs como artifacts para inspeção.
-
-O job falhará caso qualquer build retorne erro — útil como teste automático de regressão.
-
----
-
-## Testes locais
-
-Para reproduzir o que o CI faz, execute localmente:
-
-```bash
-# gerar um PDF por capítulo para calculos e fisicas
-make disciplines="calculos,fisicas" VERBOSE=1
-
-# gerar combinado
-make combined VERBOSE=1
-```
-
-Os arquivos são gerados nas pastas correspondentes (e.g., `calculos/...pdf`, `fisicas/...pdf`) e `combined.pdf` é criado no repositório raiz.
-
----
-
-## Contribuicao
-
-- Envie PRs para mudanças; inclua uma descrição clara e, quando possível, um teste ou verificação simples.
-- Prefira imagens vetoriais (TikZ, PDF) e considere marcar recursos pesados para serem ignorados em builds rápidos (FAST=1).
-- Ao alterar `Makefile` ou scripts de build, adicione verificações que possam ser executadas no CI.
-
-## Autoria
-
-- Pedro — mantenedor do repositório
-
----
-
-## Licenca
-
-MIT — veja `LICENSE`.
-
----
-
-Se quiser, adiciono um badge do CI (status) no topo do README e/ou um alvo `verify` no `Makefile` que confirme a existência dos PDFs esperados (útil para CI).
-
----
-
-Obrigado — documentação simplificada e focada nas operações de build está pronta. Se quiser, posso também abrir um PR com essas mudanças, adicionar o badge do workflow e criar um alvo `verify` que o CI utilize para validar os PDFs.
+Pedro Henrique Rocha de Andrade, 2026.
